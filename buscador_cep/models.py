@@ -18,7 +18,7 @@ class ConsultarCep(models.Model):
     '''
 
     cep = models.CharField(max_length=8, unique=True, blank=False, null=False)
-    cidade_estado = models.CharField(max_length=48, blank=False, null=False)
-    bairro = models.CharField(max_length=64, blank=False, null=False)
+    cidade = models.CharField(max_length=48, blank=False, null=False)
+    bairro = models.CharField(max_length=48, blank=False, null=False)
+    rua = models.CharField(max_length=64, blank=False, null=False)
     complemento = models.CharField(max_length=64, blank=True, null=False)
-
