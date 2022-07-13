@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-class ConsultarCep():
+class ConsultarCep(models.Model):
     '''
     linhas nos arquivos são finalizadas com o caractere LF (0x0A ou \n)
     campos em cada linha são separados pelo caractere TAB (0x09 ou \t)
@@ -21,3 +21,4 @@ class ConsultarCep():
     cidade_estado = models.CharField(max_length=48, blank=False, null=False)
     bairro = models.CharField(max_length=64, blank=False, null=False)
     complemento = models.CharField(max_length=64, blank=True, null=False)
+
