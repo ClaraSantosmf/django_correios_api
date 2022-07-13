@@ -10,10 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os   # 'os' lib makes python be able to interact with the operational system
+# 'os' lib makes python be able to interact with the operational system
+import os
 from pathlib import Path
 
-from dotenv import load_dotenv  # importing a function that loads the dotenv file in our project
+# importing a function that loads the dotenv file in our project
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -25,12 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t6oqu2(6+pgw^la4h13iwk0w@5b!trh$2xojhdicpy9-b(0nto'
+SECRET_KEY = os.getenv('SECRET', 'insert-your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') is True
 
-ALLOWED_HOSTS = []
+# temporarily adding localhost ip's to ALLOWED_HOSTS
+# to deploy a real application we'll need to change this
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # adding the main app, called 'buscador_cep' to the index of installed/plugged apps
     'buscador_cep'
 ]
 
@@ -81,8 +86,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # in this following section we are:
+        # specifying the database engine we will use
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # getting from the .env file the database name
+        'NAME': os.getenv('POSTGRES_DB'),
+        # getting from the .env file the user name
+        'USER': os.getenv('POSTGRES_USER'),
+        # getting from the .env file the user password
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        # getting from the .env file the database ip
+        'HOST': os.getenv('POSTGRES_HOST'),
+        # getting from the .env file the database ip port
+        'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
 
