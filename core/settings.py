@@ -30,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET', 'insert-your-secret-key-here')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'False') is True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 # temporarily adding localhost ip's to ALLOWED_HOSTS
 # to deploy a real application we'll need to change this
