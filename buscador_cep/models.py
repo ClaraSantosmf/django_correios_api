@@ -8,7 +8,7 @@ class ConsultarCep(models.Model):
     linhas nos arquivos são finalizadas com o caractere LF (0x0A ou \n)
     campos em cada linha são separados pelo caractere TAB (0x09 ou \t)
 
-    cep         cidade/estado   bairro/distrito     rua                                 complemento (pode ser ' ')
+    cep         cidade/estado   bairro/distrito     rua                                 complemento
     01005010    São Paulo/SP    Sé                  Largo São Francisco
     01005020    São Paulo/SP    Sé                  Rua São Francisco
     01005030    São Paulo/SP    Sé                  Rua do Ouvidor
@@ -18,7 +18,7 @@ class ConsultarCep(models.Model):
     '''
 
     cep = models.CharField(max_length=8, unique=True, blank=False, null=False)
-    cidade = models.CharField(max_length=48, blank=False, null=False)
-    bairro = models.CharField(max_length=48, blank=False, null=False)
-    rua = models.CharField(max_length=64, blank=False, null=False)
-    complemento = models.CharField(max_length=64, blank=True, null=False)
+    cidade = models.CharField(max_length=64, blank=False, null=False)
+    bairro = models.CharField(max_length=64, blank=False, null=False)
+    rua = models.CharField(max_length=128, blank=False, null=True)
+    complemento = models.CharField(max_length=128, blank=True, null=True)
