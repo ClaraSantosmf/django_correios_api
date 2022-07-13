@@ -3,12 +3,12 @@ from django.db import models
 
 # Create your models here.
 
-class Ceps():
+class ConsultarCep():
     '''
     linhas nos arquivos são finalizadas com o caractere LF (0x0A ou \n)
     campos em cada linha são separados pelo caractere TAB (0x09 ou \t)
 
-    cep         cidade/estado   bairro/distrito     rua                                 complemento (pode ser nulo)
+    cep         cidade/estado   bairro/distrito     rua                                 complemento (pode ser ' ')
     01005010    São Paulo/SP    Sé                  Largo São Francisco
     01005020    São Paulo/SP    Sé                  Rua São Francisco
     01005030    São Paulo/SP    Sé                  Rua do Ouvidor
@@ -17,8 +17,7 @@ class Ceps():
     01006001    São Paulo/SP    Sé                  Rua Senador Feijó - lado ímpar
     '''
 
-    id = models.PositiveIntegerField(primary_key=True)
-    cep = models.CharField(max_length=8 ,unique=True, blank=False, null=False)
+    cep = models.CharField(max_length=8, unique=True, blank=False, null=False)
     cidade_estado = models.CharField(max_length=48, blank=False, null=False)
     bairro = models.CharField(max_length=64, blank=False, null=False)
-    complemento = models.CharField(max_length=64, blank=False, null=True)
+    complemento = models.CharField(max_length=64, blank=True, null=False)
