@@ -7,14 +7,15 @@ from django.shortcuts import render
 
 def index(request):
     cep = 'todo'
-    cidade_estado = 'todo'
+    cidade = 'todo'
     bairro = 'todo'
-    complemento = 'todo'
+    rua = 'todo'
 
     context = {
         'cep': cep,
-        'cidade_estado': cidade_estado,
+        'cidade': cidade,
         'bairro': bairro,
-        'complemento': complemento}
-    
+        'rua': rua,
+    }
+
     return render(request, 'index.html', context)
