@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'buscador_cep/css/reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'buscador_cep/css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+
+    <title>Busca CEP</title>
+</head>
+
+<body>
+    <nav>
+        <h1>Buserteco CEP</h1>
+    </nav>
+
+    <div class="container--result">
+        <h1>Resultado da Busca por Endereço ou CEP</h1>
+        <div class="__container--result">
+            <div class="title logradouro">Logradouro/Nome</div>
+            <div class="title bairro--uf">Bairro/Distrito</div>
+            <div class="title bairro--uf">Localidade/UF</div>
+            <div class="title cep">CEP</div>
+        </div>
+
+        <div class="resultado">
+            <div class="r--logradouro">Rua Exemplo 1</div>
+            <div class="r--bairro--uf">Bairro de exemplo</div>
+            <div class="r--bairro--uf">Belo Horizonte/MG</div>
+            <div class="r--cep">00-000-00</div>
+        </div>
+
+        <a href="../">
+            <button>Nova Busca</button>
+        </a>
+    </div>
+</body>
+
+</html>

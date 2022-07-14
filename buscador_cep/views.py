@@ -6,6 +6,9 @@ from django.shortcuts import render
 
 
 def index(request):
+    return render(request, 'index.html')
+
+def resultado(request):
     cep = 'todo'
     cidade = 'todo'
     bairro = 'todo'
@@ -18,4 +21,4 @@ def index(request):
         'rua': rua,
     }
 
-    return render(request, 'index.html', context)
+    return render(request, 'resultado.html', context)
