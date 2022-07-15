@@ -22,27 +22,24 @@
 
     <div class="container">
         <h1>Busca CEP</h1>
-        <div class="__container">
-            <div>
-                <label>Digite um CEP:</label>
+        <form action={% url 'resultado' %} method="get">
+            <div class="__container">
+                <div>
+                    <label>Digite um CEP:</label>
+                </div>
+                <div>
+                    <input value="{{ request.GET.consulta_cep }}" name="consulta_cep" type="text"
+                        placeholder="Digite o número do CEP" />
+                </div>
             </div>
-            <div>
-                <input type="text" placeholder="Digite o número do CEP" />
-            </div>
-        </div>
+            <button type="submit">Buscar</button>
+        </form>
 
-        <div class="__container">
-            <div>
-                <label>Esse CEP é de:</label>
-            </div>
-            <div>
-                <input type="text" placeholder="Todos" />
-            </div>
-        </div>
 
-        <a href="./resultado.html">
-            <button>Buscar</button>
-        </a>
+        {% block conteudo %}
+        {%endblock%}
+
+    </div>
     </div>
 </body>
 

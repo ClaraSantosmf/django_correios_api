@@ -19,5 +19,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('resultado.html', views.resultado)
+    path('resultado.html/', views.resultado, name='resultado')
 ]

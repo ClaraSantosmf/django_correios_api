@@ -7,20 +7,11 @@ from .models import ConsultarCep
 
 
 def index(request):
+
     return render(request, 'index.html')
 
 
 def resultado(request):
-    cep = ConsultarCep.objects.get(id=84)
-    cidade = 'todo'
-    bairro = 'todo'
-    rua = 'todo'
-
-    context = {
-        'cep': cep,
-        'cidade': cidade,
-        'bairro': bairro,
-        'rua': rua,
-    }
-
-    return render(request, 'resultado.html', context)
+    cep = request.GET.get('consulta_cep')
+    endereco = ConsultarCep.objects.filter(cep=cep)
+    return render(request, 'resultado.html', {'endereco': endereco})
