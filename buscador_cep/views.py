@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import ConsultarCep
 # from .models import ConsultarCep
 
 
@@ -8,8 +9,9 @@ from django.shortcuts import render
 def index(request):
     return render(request, 'index.html')
 
+
 def resultado(request):
-    cep = 'todo'
+    cep = ConsultarCep.objects.get(id=84)
     cidade = 'todo'
     bairro = 'todo'
     rua = 'todo'
