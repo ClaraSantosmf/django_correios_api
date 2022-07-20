@@ -4,6 +4,7 @@
 {% block conteudo %}
 
 <div class="container--result">
+
     <h1>Resultado da Busca por Endereço ou CEP</h1>
     <div class="__container--result">
         <div class="title logradouro">Logradouro/Nome</div>
@@ -17,7 +18,12 @@
         <div class="r--bairro--uf">{{campo.bairro}}</div>
         <div class="r--bairro--uf">{{campo.cidade}}</div>
         <div class="r--cep">{{campo.cep}}</div>
+        {% empty %}
+        <h2>Ahhhhhhhhhhhhhhhhhhhhhhhh cep invalida</h2>
         {%endfor%}
     </div>
+
+
+
 </div>
 {% endblock %}
