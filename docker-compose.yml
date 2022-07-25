@@ -6,11 +6,11 @@ services:
       container_name: "postgres"
       image: "postgres:13.3-alpine"
       ports:
-        - "55432:5432"
+        - "8080:5432"
       env_file:
         - .env
       volumes:
-        - postgres_data:/var/lib/postgresql/data
+        - ./.postgres_data:/var/lib/postgresql/data
 
 volumes:
   postgres_data:
