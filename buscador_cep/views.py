@@ -8,11 +8,13 @@ from .models import ConsultarCep
 
 
 def index(request):
-    return render(request, 'index2.html')
+    return render(request, 'index.html')
 
 
 def resultado(request):
     cep = request.GET.get('consulta_cep')
+    cep = cep.replace('-', '')
+    cep = cep.replace('.', '')
     if cep is None or len(cep) != 8:
         return redirect('index')
 
