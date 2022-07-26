@@ -1,29 +1,48 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
+
+{% block title %}
+    Resultado do CEP    
+{% endblock %}
 
 
-{% block conteudo %}
+{%block content%}
 
-<div class="container--result">
-
-    <h1>Resultado da Busca por Endereço ou CEP</h1>
-    <div class="__container--result">
-        <div class="title logradouro">Logradouro/Nome</div>
-        <div class="title bairro--uf">Bairro/Distrito</div>
-        <div class="title bairro--uf">Localidade/UF</div>
-        <div class="title cep">CEP</div>
-    </div>
-    <div class="resultado">
-        {% for campo in endereco %}
-        <div class="r--logradouro">{{campo.rua}}</div>
-        <div class="r--bairro--uf">{{campo.bairro}}</div>
-        <div class="r--bairro--uf">{{campo.cidade}}</div>
-        <div class="r--cep">{{campo.cep}}</div>
-        {% empty %}
-        <h2>Ahhhhhhhhhhhhhhhhhhhhhhhh cep invalida</h2>
-        {%endfor%}
+{% for campo in endereco %}
+<div class="container h-75 mt-5 mb-5">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="rua">Logradouro:</span>
+        <input type="text" disabled="disabled" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="{{campo.rua}}">
     </div>
 
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="col-xs-2">Bairro/Distrito:</span>
+        <input type="text" disabled="disabled" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="{{campo.bairro}}">
+    </div>
 
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="col-xs-2">Localidade/UF:</span>
+        <input type="text" disabled="disabled" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="{{campo.cidade}}">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="col-xs-2">CEP:</span>
+        <input type="text" disabled="disabled" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="{{campo.cep}}">
+    </div>
+    {% empty %}
+    <h2 class="invalido">Número de CEP inválido 😣</h2>
+    {%endfor%}
+
+    <div  class=" row d-flex justify-content-center align-content-center "  >  
+        <a href="/" class="btn btn-primary col-3" id="nova-busca">Nova Busca</a> 
+        <a href="#" class="btn btn-outline-secondary col-3">Integre a nossa API aqui {{ request.HOST }}</a>  
+    </div>
 
 </div>
+
+    
 {% endblock %}
+
+
+
+
+

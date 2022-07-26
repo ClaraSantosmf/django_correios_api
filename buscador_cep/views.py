@@ -8,7 +8,7 @@ from .models import ConsultarCep
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'index2.html')
 
 
 def resultado(request):
