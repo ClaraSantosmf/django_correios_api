@@ -79,21 +79,24 @@ h6 {
 }
 
 
-.nova-busca{
-  margin-right: 10px!important;
-}
 
-
-
-.container h2 {
-  text-align: center!important;
-}
-
-.rua{
-  background-color: #2596be;
-}
 
 .btn-primary {
   background-color: #2596be;
   border-color: #2596be;
+
+}
+.btn-success{
+  background-color: #2596be;
+  border-color: #2596be;
+}
+
+.btn-success:hover{
+  background-color: #034f6b;
+  border-color: #034f6b;
+}
+
+
+h2 {
+  text-align: center;
 }
