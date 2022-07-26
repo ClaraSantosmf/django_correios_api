@@ -14,17 +14,22 @@ def resultado(request):
     cep = request.GET.get('consulta_cep')
     cep = cep.replace('-', '')
     cep = cep.replace('.', '')
+    contexto = endereco = {}
     if cep is None or len(cep) != 8:
         return redirect('index')
-
-    endereco = Cep.objects.filter(cep=cep)
-
+    try:
+        endereco = Cep.objects.get(cep=cep)
+    except:
+        cepinvalido = {
+            "cepinvalido": "Número de CEP inválido 😣"
+        }
+        return render(request, 'resultado.html', {'endereco': endereco, 'cepinvalido': cepinvalido})
     return render(request, 'resultado.html', {'endereco': endereco})
 
 
 def consulta_cep(request, cep):
 
-    endereco = Cep.objects.filter(cep=cep)
+    endereco = Cep.objects.get(cep=cep)
     if not endereco:
         resposta = {
             "cep": "invalido"
@@ -32,8 +37,8 @@ def consulta_cep(request, cep):
     else:
         resposta = {
             "cep": cep,
-            "rua": endereco[0].rua,
-            "bairro": endereco[0].bairro,
-            "cidade": endereco[0].cidade,
+            "rua": endereco.logradouro,
+            "bairro": endereco.bairro,
+            "cidade": endereco.cidade.nome,
         }
     return JsonResponse(resposta)
