@@ -14,7 +14,7 @@ def resultado(request):
     cep = request.GET.get('consulta_cep')
     cep = cep.replace('-', '')
     cep = cep.replace('.', '')
-    contexto = endereco = {}
+    contexto = endereco={}
     if cep is None or len(cep) != 8:
         return redirect('index')
     try:
