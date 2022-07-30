@@ -28,7 +28,6 @@ def resultado(request):
 
 
 def consulta_cep(request, cep):
-
     endereco = Cep.objects.get(cep=cep)
     if not endereco:
         resposta = {
