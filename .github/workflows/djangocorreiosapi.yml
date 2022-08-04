@@ -1,7 +1,6 @@
 name: Django CI
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -24,8 +23,7 @@ jobs:
       with:
         python-version: 3.9
     - name: Instalar dependências
-      run: |
-        pip install requirements-dev.txt
+      run: pip install -r requirements-dev.txt
     - name: Lint com Flake8
       run: |
         flake8

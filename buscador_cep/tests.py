@@ -1,10 +1,6 @@
-from django.test import TestCase
 from django.urls import reverse
-from pytest_django.asserts import assertTemplateUsed, assertRedirects
+from pytest_django.asserts import assertTemplateUsed
 from buscador_cep.models import Estado, Cidade, Cep
-
-# Create your tests here.
-
 
 
 def test_index(client, db):
@@ -31,7 +27,6 @@ def test_template_resultado(client, db):
 def test_consulta_cep_api(client, db):
     estado = Estado.objects.create(nome='Paraiba', sigla='PB')
     cidade = Cidade.objects.create(nome='joao', estado=estado)
-    cep = Cep.objects.create(cep='12345678', cidade=cidade)
+    Cep.objects.create(cep='12345678', cidade=cidade)
     resposta = client.get(reverse('API', kwargs={'cep': '12345678'}))
     assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'rua': None}
-
