@@ -32,5 +32,6 @@ def test_consulta_cep_api(client, db):
     estado = Estado.objects.create(nome='Paraiba', sigla='PB')
     cidade = Cidade.objects.create(nome='joao', estado=estado)
     cep = Cep.objects.create(cep='12345678', cidade=cidade)
-    resposta = client.get('/api/cep/12345678')
+    resposta = client.get(reverse('API', kwargs={'cep': '12345678'}))
     assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'rua': None}
+
