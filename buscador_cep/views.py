@@ -1,4 +1,4 @@
-from django.contrib.sites import requests
+import requests
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
@@ -34,7 +34,9 @@ def resultado(request):
 def consulta_cep(request, cep):
     endereco = Cep.objects.filter(cep=cep).first()
     if not endereco:
-        resposta = {"cep": "invalido"}
+        endereco = requests.get(f'https://viacep.com.br/ws/{cep}/json/').json()
+        if 'erro' in endereco:
+            resposta = {"cep": "invalido"}
     else:
         resposta = {
             "cep": cep,
