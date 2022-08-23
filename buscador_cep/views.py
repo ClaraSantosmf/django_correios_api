@@ -32,11 +32,20 @@ def resultado(request):
 
 
 def consulta_cep(request, cep):
+
     endereco = Cep.objects.filter(cep=cep).first()
     if not endereco:
         endereco = requests.get(f'https://viacep.com.br/ws/{cep}/json/').json()
         if 'erro' in endereco:
             resposta = {"cep": "invalido"}
+        else:
+            resposta = {
+            "cep": cep,
+            "rua": endereco['logradouro'],
+            "bairro": endereco['bairro'],
+            "cidade": endereco['localidade'],
+            "estado": endereco['uf']
+            }
     else:
         resposta = {
             "cep": cep,
