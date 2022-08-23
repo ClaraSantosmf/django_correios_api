@@ -22,12 +22,12 @@ def resultado(request):
     try:
         endereco = Cep.objects.get(cep=cep)
     except ObjectDoesNotExist:
-            cepinvalido = {"cepinvalido": "Número de CEP inválido 😣"}
-            return render(
-                request,
-                "resultado.html",
-                {"endereco": endereco, "cepinvalido": cepinvalido},
-            )
+        cepinvalido = {"cepinvalido": "Número de CEP inválido 😣"}
+        return render(
+            request,
+            "resultado.html",
+            {"endereco": endereco, "cepinvalido": cepinvalido},
+        )
     return render(request, "resultado.html", {"endereco": endereco})
 
 
@@ -40,11 +40,11 @@ def consulta_cep(request, cep):
             resposta = {"cep": "invalido"}
         else:
             resposta = {
-            "cep": cep,
-            "rua": endereco['logradouro'],
-            "bairro": endereco['bairro'],
-            "cidade": endereco['localidade'],
-            "estado": endereco['uf']
+                "cep": cep,
+                "rua": endereco['logradouro'],
+                "bairro": endereco['bairro'],
+                "cidade": endereco['localidade'],
+                "estado": endereco['uf']
             }
     else:
         resposta = {

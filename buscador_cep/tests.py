@@ -31,6 +31,7 @@ def test_consulta_cep_api_funcionando(client, db):
     resposta = client.get(reverse('API', kwargs={'cep': '12345678'}))
     assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'rua': None}
 
+
 def test_consulta_cep_api_nao_funcionando(client, db):
     url = reverse('API', kwargs={'cep': '00000000'})
     resposta = client.get(url)
