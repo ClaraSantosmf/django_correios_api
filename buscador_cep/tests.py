@@ -24,9 +24,14 @@ def test_template_resultado(client, db):
     assertTemplateUsed(resposta, 'resultado.html')
 
 
-def test_consulta_cep_api(client, db):
+def test_consulta_cep_api_funcionando(client, db):
     estado = Estado.objects.create(nome='Paraiba', sigla='PB')
     cidade = Cidade.objects.create(nome='joao', estado=estado)
     Cep.objects.create(cep='12345678', cidade=cidade)
     resposta = client.get(reverse('API', kwargs={'cep': '12345678'}))
     assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'rua': None}
+
+def test_consulta_cep_api_nao_funcionando(client, db):
+    url = reverse('API', kwargs={'cep': '00000000'})
+    resposta = client.get(url)
+    assert resposta.json() == {"cep": "invalido"}

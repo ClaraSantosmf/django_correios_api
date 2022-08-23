@@ -1,5 +1,5 @@
-from builtins import Exception
-
+from django.contrib.sites import requests
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from .models import Cep
@@ -21,18 +21,18 @@ def resultado(request):
         return redirect("index")
     try:
         endereco = Cep.objects.get(cep=cep)
-    except Exception:
-        cepinvalido = {"cepinvalido": "Número de CEP inválido 😣"}
-        return render(
-            request,
-            "resultado.html",
-            {"endereco": endereco, "cepinvalido": cepinvalido},
-        )
+    except ObjectDoesNotExist:
+            cepinvalido = {"cepinvalido": "Número de CEP inválido 😣"}
+            return render(
+                request,
+                "resultado.html",
+                {"endereco": endereco, "cepinvalido": cepinvalido},
+            )
     return render(request, "resultado.html", {"endereco": endereco})
 
 
 def consulta_cep(request, cep):
-    endereco = Cep.objects.get(cep=cep)
+    endereco = Cep.objects.filter(cep=cep).first()
     if not endereco:
         resposta = {"cep": "invalido"}
     else:
