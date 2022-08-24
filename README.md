@@ -15,6 +15,7 @@ O CEP Clara é um fork do projeto em grupo e a extensão do projeto com mais fea
 1) Existe uma atualização do banco de dados com API de terceiro (https://viacep.com.br/), quando a pesquisa não é encontrado nessa base. 
 
 
+
 ## Possíveis problemas do banco de dados. 
 Por algum motivo, o ID sequence descasou e acaba tendo problemas com a criação de novos CEPs por API. Então, caso haja um estouro de problema do tipo:
 

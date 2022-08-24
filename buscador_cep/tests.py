@@ -36,8 +36,3 @@ def test_consulta_cep_api_nao_funcionando(client, db):
     url = reverse('API', kwargs={'cep': '00000000'})
     resposta = client.get(url)
     assert resposta.json() == {"cep": "invalido"}
-
-#def test_criacao_de_objeto_no_banco(client, db):
-#    url = reverse('API', kwargs={'cep': '17309899'})
-#    resposta = client.get(url)
-    

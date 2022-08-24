@@ -47,7 +47,6 @@ def consulta_cep(request, cep):
                 "estado": endereco['uf'],
                 "complemento": endereco['complemento']
             }
-        alimentando_o_banco(resposta)
     else:
         resposta = {
             "cep": cep,
@@ -58,28 +57,31 @@ def consulta_cep(request, cep):
 
     return JsonResponse(resposta)
 
+
 def alimentando_o_banco(resposta):
     if 'estado' in resposta.keys():
         siglaDaResposta = resposta['estado']
         try:
-           estadoDaAPI = Estado.objects.get(sigla=siglaDaResposta)
-        except:
-           estadoDaAPI = Estado.objects.create(nome=resposta['estado'], sigla=resposta['estado'])
-            #Isso é um problema, como atribuir de uma sigla o nome de um estado?
+            estadoDaAPI = Estado.objects.get(sigla=siglaDaResposta)
+        except ObjectDoesNotExist:
+            estadoDaAPI = Estado.objects.create(nome=resposta['estado'], sigla=resposta['estado'])
+    else:
+        return
     if 'cidade' in resposta.keys():
         cidadeDaResposta = resposta['cidade']
         try:
-           cidadeDaAPI = Cidade.objects.get(nome=cidadeDaResposta, estado=estadoDaAPI)
-        except:
+            cidadeDaAPI = Cidade.objects.get(nome=cidadeDaResposta, estado=estadoDaAPI)
+        except ObjectDoesNotExist:
             cidadeDaAPI = Cidade.objects.create(nome=cidadeDaResposta, estado=estadoDaAPI)
-            #Se for criar, como criar associado o estado?
+    else:
+        return
     if 'cep' in resposta.keys():
 
         cepDaResposta = resposta['cep']
         bairroDaResposta = resposta['bairro']
-        complementoDaResposta= resposta['complemento']
+        complementoDaResposta = resposta['complemento']
         logradouroDaResposta = resposta['logradouro']
 
         Cep.objects.create(cep=cepDaResposta, logradouro=logradouroDaResposta, complemento=complementoDaResposta, bairro=bairroDaResposta, cidade=cidadeDaAPI)
-
-        #Os casos de cidade e estado estão sendo inserindo com ID? não tenho certeza
+    else:
+        return
