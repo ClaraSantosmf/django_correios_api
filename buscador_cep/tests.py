@@ -29,7 +29,7 @@ def test_consulta_cep_api_funcionando(client, db):
     cidade = Cidade.objects.create(nome='joao', estado=estado)
     Cep.objects.create(cep='12345678', cidade=cidade)
     resposta = client.get(reverse('API', kwargs={'cep': '12345678'}))
-    assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'rua': None}
+    assert resposta.json() == {'bairro': None, 'cep': '12345678', 'cidade': 'joao', 'logradouro': None}
 
 
 def test_consulta_cep_api_nao_funcionando(client, db):
